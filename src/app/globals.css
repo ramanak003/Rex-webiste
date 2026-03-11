@@ -137,4 +137,18 @@
   body {
     @apply bg-background text-foreground;
   }
+  html, body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  /* Hide horizontal scrollbar for all elements */
+  * {
+    -ms-overflow-style: none;  /* IE and Edge */
+  }
+  
+  *::-webkit-scrollbar:horizontal {
+    display: none;
+  }
 }
