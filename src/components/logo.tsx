@@ -31,7 +31,7 @@ export function Logo({ className, href = "/", size = "md" }: LogoProps) {
     <>
       {/* Light mode: rexdark.png */}
       <Image
-        src="/rexdark.png"
+        src="rexdark.png"
         alt="Rex"
         width={300}
         height={100}
@@ -40,7 +40,7 @@ export function Logo({ className, href = "/", size = "md" }: LogoProps) {
       />
       {/* Dark mode: rexlight.png (smaller) */}
       <Image
-        src="/rexlight.png"
+        src="rexlight.png"
         alt="Rex"
         width={300}
         height={100}

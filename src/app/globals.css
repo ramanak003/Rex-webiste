@@ -131,7 +131,7 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* removed smooth scroll to prevent jitter */
   }
 
   body {
