@@ -13,8 +13,8 @@ export default function DashboardLayout({
     return (
         <div className="min-h-screen flex bg-muted/10">
             <DashboardSidebar />
-            <div className="flex-1 flex flex-col">
-                <header className="h-16 border-b border-border/40 bg-background/80 backdrop-blur-sm sticky top-0 z-10 flex items-center justify-between px-6">
+            <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+                <header className="h-16 border-b border-border/40 bg-background/80 backdrop-blur-sm sticky top-0 z-10 flex items-center justify-between px-8">
                     <div className="flex items-center gap-4 w-1/3">
                         <div className="relative w-full max-w-sm">
                             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -32,8 +32,10 @@ export default function DashboardLayout({
                         <UserAvatar />
                     </div>
                 </header>
-                <main className="flex-1 p-6 md:p-8 overflow-y-auto">
-                    {children}
+                <main className="flex-1 p-8 overflow-y-auto overflow-x-hidden">
+                    <div className="max-w-[1600px] mx-auto w-full">
+                        {children}
+                    </div>
                 </main>
             </div>
         </div>

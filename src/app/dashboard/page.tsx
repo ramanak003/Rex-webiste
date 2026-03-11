@@ -61,10 +61,10 @@ export default function DashboardPage() {
             </div>
 
             {/* Main Content Grid */}
-            <div className="grid gap-4 md:grid-cols-7 lg:grid-cols-7">
+            <div className="grid gap-6 lg:grid-cols-12 items-start">
 
                 {/* Patient Queue / Recent Patients */}
-                <div className="col-span-4 rounded-3xl border border-border/40 bg-background/60 backdrop-blur-sm shadow-sm p-6 space-y-6">
+                <div className="lg:col-span-7 rounded-3xl border border-border/40 bg-background/60 backdrop-blur-sm shadow-sm p-6 space-y-6">
                     <div className="flex items-center justify-between">
                         <h3 className="font-semibold text-lg">Upcoming Appointments</h3>
                         <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
@@ -112,7 +112,7 @@ export default function DashboardPage() {
                 </div>
 
                 {/* Recent Activity / Tasks */}
-                <div className="col-span-3 rounded-3xl border border-border/40 bg-background/60 backdrop-blur-sm shadow-sm p-6 space-y-6">
+                <div className="lg:col-span-5 rounded-3xl border border-border/40 bg-background/60 backdrop-blur-sm shadow-sm p-6 space-y-6">
                     <div className="flex items-center justify-between">
                         <h3 className="font-semibold text-lg">Recent Reports</h3>
                         <Button variant="ghost" size="icon" className="h-8 w-8">
