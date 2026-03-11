@@ -10,15 +10,17 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-function getFirebaseApp(): FirebaseApp {
+function getFirebaseApp(): FirebaseApp | null {
   if (getApps().length > 0) return getApps()[0] as FirebaseApp;
   if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
-    throw new Error("Firebase client config missing. Add NEXT_PUBLIC_FIREBASE_* to .env.local");
+    return null;
   }
   return initializeApp(firebaseConfig);
 }
 
-export function getFirebaseAuth(): Auth {
-  getFirebaseApp();
-  return getAuth();
+export function getFirebaseAuth(): Auth | null {
+  const app = getFirebaseApp();
+  if (!app) return null;
+  return getAuth(app);
 }
+

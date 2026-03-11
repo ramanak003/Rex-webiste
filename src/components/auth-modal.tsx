@@ -7,9 +7,6 @@ import { User, Building2, ArrowLeft, Loader2 } from "lucide-react"
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -87,6 +84,7 @@ export function AuthModal({ children, defaultTab = "login" }: AuthModalProps) {
         }
         try {
             const auth = getFirebaseAuth();
+            if (!auth) throw new Error("Firebase client config missing");
             const { user } = await signInWithEmailAndPassword(auth, email, password);
             const idToken = await user.getIdToken();
             await verifyAndRedirect(idToken);
@@ -115,6 +113,7 @@ export function AuthModal({ children, defaultTab = "login" }: AuthModalProps) {
         }
         try {
             const auth = getFirebaseAuth();
+            if (!auth) throw new Error("Firebase client config missing");
             const { user } = await createUserWithEmailAndPassword(auth, email, password);
             const idToken = await user.getIdToken();
             await verifyAndRedirect(idToken, name || undefined);

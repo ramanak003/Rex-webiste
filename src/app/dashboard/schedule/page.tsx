@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
-import { Plus, Clock, MapPin, MoreVertical, Calendar as CalendarIcon, ChevronLeft, ChevronRight } from "lucide-react"
+import { Plus, Clock, MapPin, MoreVertical, Calendar as CalendarIcon } from "lucide-react"
 
 export default function SchedulePage() {
     const [date, setDate] = useState<Date | undefined>(new Date())

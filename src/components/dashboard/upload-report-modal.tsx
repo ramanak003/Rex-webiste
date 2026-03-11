@@ -9,7 +9,6 @@ import {
     DialogFooter,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -34,7 +33,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import { Check, ChevronsUpDown, UploadCloud, X, File, Loader2, CheckCircle2, AlertCircle } from "lucide-react"
+import { Check, ChevronsUpDown, UploadCloud, File, Loader2, CheckCircle2, AlertCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 // Mock patients data - in a real app this would come from an API or prop
@@ -129,7 +128,7 @@ export function UploadReportModal({ open, onOpenChange, defaultPatient }: Upload
                     type: "success",
                     message: "Report uploaded successfully!"
                 })
-                
+
                 // Reset form after 2 seconds
                 setTimeout(() => {
                     setFile(null)
@@ -158,9 +157,9 @@ export function UploadReportModal({ open, onOpenChange, defaultPatient }: Upload
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="sm:max-w-[500px] rounded-3xl">
                 <DialogHeader>
-                    <DialogTitle>Upload Report</DialogTitle>
+                    <DialogTitle className="text-xl">Upload Report</DialogTitle>
                     <DialogDescription>
-                        Add a new medical report to a patient's record.
+                        Add a new medical report to a patient&apos;s record.
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-6 py-4">
@@ -216,9 +215,9 @@ export function UploadReportModal({ open, onOpenChange, defaultPatient }: Upload
                     <div className="grid grid-cols-2 gap-4">
                         <div className="grid gap-2">
                             <Label htmlFor="name">Report Name</Label>
-                            <Input 
-                                id="name" 
-                                placeholder="e.g. Blood Test" 
+                            <Input
+                                id="name"
+                                placeholder="e.g. Blood Test"
                                 className="rounded-xl h-11"
                                 value={reportName}
                                 onChange={(e) => setReportName(e.target.value)}
@@ -226,7 +225,9 @@ export function UploadReportModal({ open, onOpenChange, defaultPatient }: Upload
                             />
                         </div>
                         <div className="grid gap-2">
-                            <Label>Type *</Label>
+                            <Label className="flex items-center gap-1">
+                                Type <span className="text-red-500">*</span>
+                            </Label>
                             <Select value={reportType} onValueChange={setReportType} disabled={uploading}>
                                 <SelectTrigger className="rounded-xl h-11">
                                     <SelectValue placeholder="Select type" />
@@ -317,17 +318,17 @@ export function UploadReportModal({ open, onOpenChange, defaultPatient }: Upload
                     )}
                 </div>
                 <DialogFooter>
-                    <Button 
-                        variant="ghost" 
-                        onClick={() => onOpenChange(false)} 
+                    <Button
+                        variant="ghost"
+                        onClick={() => onOpenChange(false)}
                         className="rounded-xl"
                         disabled={uploading}
                     >
                         Cancel
                     </Button>
-                    <Button 
-                        onClick={handleSubmit} 
-                        className="rounded-xl" 
+                    <Button
+                        onClick={handleSubmit}
+                        className="rounded-xl"
                         disabled={!selectedPatient || !file || !reportType || uploading}
                     >
                         {uploading ? (

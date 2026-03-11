@@ -127,7 +127,7 @@ export default function DashboardPage() {
                             { title: "Cardiology Report", patient: "Robert Taylor", time: "5h ago", status: "Sent" },
                             { title: "General Checkup Note", patient: "William Lee", time: "Yesterday", status: "Sent" },
                         ].map((item, i) => (
-                            <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-muted/30 hover:bg-muted/50 transition-colors border border-transparent hover:border-border/40 group cursor-pointer leading-none">
+                            <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-muted/30 hover:bg-muted/50 transition-colors border border-transparent hover:border-border/40 group cursor-pointer">
                                 <div className="space-y-1">
                                     <p className="font-medium text-sm">{item.title}</p>
                                     <div className="flex items-center text-xs text-muted-foreground gap-2">

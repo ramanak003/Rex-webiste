@@ -12,6 +12,7 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
+    DialogFooter,
 } from "@/components/ui/dialog"
 import {
     Tabs,
@@ -85,13 +86,6 @@ export function AddPatientModal({ children }: { children: React.ReactNode }) {
                                 <div className="absolute top-0 left-0 w-full h-[2px] bg-primary/50 shadow-[0_0_8px_rgba(var(--primary),0.8)] animate-[scan_2.5s_ease-in-out_infinite]" />
                             )}
                         </div>
-                        <Button
-                            className="w-full rounded-xl h-12"
-                            onClick={handleSimulateScan}
-                            disabled={isScanning || scanSuccess}
-                        >
-                            {isScanning ? "Scanning..." : scanSuccess ? "Success" : "Simulate Scan"}
-                        </Button>
                     </TabsContent>
 
                     <TabsContent value="manual" className="space-y-4 pt-2">
@@ -105,14 +99,38 @@ export function AddPatientModal({ children }: { children: React.ReactNode }) {
                                 className="h-12 rounded-xl"
                             />
                             <p className="text-xs text-muted-foreground">
-                                Enter the unique 6-character ID found on the patient's card.
+                                Enter the unique 6-character ID found on the patient&apos;s card.
                             </p>
                         </div>
-                        <Button className="w-full rounded-xl h-12 mt-4">
+
+                    </TabsContent>
+                </Tabs>
+                <DialogFooter className="mt-6 flex flex-row items-center gap-2 sm:justify-end">
+                    <Button 
+                        variant="ghost" 
+                        onClick={() => {}} // This would normally close the dialog, but DialogTrigger handles it.
+                        className="rounded-xl h-12 flex-1 sm:flex-none"
+                    >
+                        Cancel
+                    </Button>
+                    <TabsContent value="scan" className="m-0 p-0 flex-1 sm:flex-none" asChild>
+                        <Button
+                            className="w-full rounded-xl h-12"
+                            onClick={handleSimulateScan}
+                            disabled={isScanning || scanSuccess}
+                        >
+                            {isScanning ? "Scanning..." : scanSuccess ? "Success" : "Simulate Scan"}
+                        </Button>
+                    </TabsContent>
+                    <TabsContent value="manual" className="m-0 p-0 flex-1 sm:flex-none" asChild>
+                        <Button 
+                            className="w-full rounded-xl h-12"
+                            disabled={!manualId}
+                        >
                             Find Patient
                         </Button>
                     </TabsContent>
-                </Tabs>
+                </DialogFooter>
             </DialogContent>
         </Dialog>
     )

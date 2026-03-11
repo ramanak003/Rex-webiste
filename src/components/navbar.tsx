@@ -1,12 +1,34 @@
+"use client"
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Logo } from "@/components/logo";
-import { Menu } from "lucide-react";
+import { Menu, LayoutDashboard } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { AuthModal } from "@/components/auth-modal";
+import { getFirebaseAuth } from "@/lib/firebase";
+import { onAuthStateChanged, User } from "firebase/auth";
 
 export function Navbar() {
+    const [user, setUser] = useState<User | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const auth = getFirebaseAuth();
+        if (!auth) {
+            setLoading(false);
+            return;
+        }
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setUser(user);
+            setLoading(false);
+        });
+        return () => unsubscribe();
+    }, []);
+
+
     return (
         <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
             <div className="container relative flex h-16 max-w-screen-2xl items-center justify-between mx-auto px-4 sm:px-8">
@@ -20,22 +42,33 @@ export function Navbar() {
                     <Link href="#" className="hover:text-foreground transition-colors">
                         Features
                     </Link>
-
-
                 </nav>
                 <div className="flex items-center gap-4">
                     <div className="hidden md:flex items-center gap-4">
                         <ModeToggle />
-                        <AuthModal defaultTab="login">
-                            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-                                Sign in
-                            </Button>
-                        </AuthModal>
-                        <AuthModal defaultTab="signup">
-                            <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm">
-                                Sign up
-                            </Button>
-                        </AuthModal>
+                        {!loading && (
+                            user ? (
+                                <Link href="/dashboard">
+                                    <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm gap-2">
+                                        <LayoutDashboard className="h-4 w-4" />
+                                        Dashboard
+                                    </Button>
+                                </Link>
+                            ) : (
+                                <>
+                                    <AuthModal defaultTab="login">
+                                        <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
+                                            Sign in
+                                        </Button>
+                                    </AuthModal>
+                                    <AuthModal defaultTab="signup">
+                                        <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm">
+                                            Sign up
+                                        </Button>
+                                    </AuthModal>
+                                </>
+                            )
+                        )}
                     </div>
                 </div>
 
@@ -58,19 +91,31 @@ export function Navbar() {
                                     <Link href="#" className="hover:text-foreground transition-colors px-2 py-1">
                                         Features
                                     </Link>
-
                                 </nav>
                                 <div className="flex flex-col gap-2 mt-4">
-                                    <AuthModal defaultTab="login">
-                                        <Button variant="outline" className="w-full">
-                                            Sign in
-                                        </Button>
-                                    </AuthModal>
-                                    <AuthModal defaultTab="signup">
-                                        <Button className="w-full bg-primary">
-                                            Sign up
-                                        </Button>
-                                    </AuthModal>
+                                    {!loading && (
+                                        user ? (
+                                            <Link href="/dashboard" className="w-full">
+                                                <Button className="w-full bg-primary gap-2">
+                                                    <LayoutDashboard className="h-4 w-4" />
+                                                    Dashboard
+                                                </Button>
+                                            </Link>
+                                        ) : (
+                                            <>
+                                                <AuthModal defaultTab="login">
+                                                    <Button variant="outline" className="w-full">
+                                                        Sign in
+                                                    </Button>
+                                                </AuthModal>
+                                                <AuthModal defaultTab="signup">
+                                                    <Button className="w-full bg-primary">
+                                                        Sign up
+                                                    </Button>
+                                                </AuthModal>
+                                            </>
+                                        )
+                                    )}
                                 </div>
                             </div>
                         </SheetContent>

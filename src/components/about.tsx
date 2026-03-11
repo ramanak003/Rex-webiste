@@ -8,7 +8,7 @@ export function About() {
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-24 items-center">
                 <div className="space-y-6">
                     <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-serif">
-                        We're building the future of clinical documentation.
+                        We&apos;re building the future of clinical documentation.
                     </h2>
                     <p className="text-xl text-muted-foreground leading-relaxed">
                         Rex empowers healthcare professionals to spend less time on paperwork and more time with patients. We believe that doctors should practice medicine, not administration.
@@ -83,7 +83,7 @@ export function About() {
                         </div>
                         <h3 className="text-xl font-bold">Ambitious</h3>
                         <p className="text-muted-foreground leading-relaxed">
-                            We're not here to build a small tool. We're building the ambient AI assistant that every healthcare team will use every day.
+                            We&apos;re not here to build a small tool. We&apos;re building the ambient AI assistant that every healthcare team will use every day.
                         </p>
                     </div>
 

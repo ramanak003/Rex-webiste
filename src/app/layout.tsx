@@ -19,8 +19,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Rex Website",
-  description: "Rex Website - Building the future",
+  title: "Rex Webiste",
+  description: "Rex Webiste - Building the future",
 };
 
 export default function RootLayout({

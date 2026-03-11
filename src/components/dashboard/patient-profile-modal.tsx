@@ -4,15 +4,13 @@
 import {
     Dialog,
     DialogContent,
-    DialogHeader,
-    DialogTitle,
 } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Phone, Mail, MapPin, Activity, FileText, Pill, Clock, AlertCircle } from "lucide-react"
+import { Phone, Mail, MapPin, FileText, Pill, Clock } from "lucide-react"
 
 interface Patient {
     id: string
@@ -45,7 +43,7 @@ export function PatientProfileModal({ patient, open, onOpenChange }: PatientProf
                                 <AvatarImage src={patient.image} />
                                 <AvatarFallback className="text-2xl">{patient.name[0]}</AvatarFallback>
                             </Avatar>
-                            <h2 className="text-2xl font-serif font-bold">{patient.name}</h2>
+                            <h2 className="text-xl font-serif font-bold">{patient.name}</h2>
                             <p className="text-sm text-muted-foreground mb-2">{patient.id}</p>
                             <Badge variant="outline" className={`rounded-full px-3 py-1 
                                 ${patient.status === 'Active' ? 'bg-green-500/10 text-green-700 dark:text-green-400' :

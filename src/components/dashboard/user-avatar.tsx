@@ -38,27 +38,33 @@ export function UserAvatar() {
 
         // Get user email from Firebase
         const auth = getFirebaseAuth()
-        const user = auth.currentUser
-        if (user?.email) {
-            setUserEmail(user.email)
-            // If no hospital name, use email initials
-            if (!storedName) {
-                const emailInitials = user.email
-                    .split("@")[0]
-                    .slice(0, 2)
-                    .toUpperCase()
-                setInitials(emailInitials)
+        if (auth) {
+            const user = auth.currentUser
+            if (user?.email) {
+                setUserEmail(user.email)
+                // If no hospital name, use email initials
+                if (!storedName) {
+                    const emailInitials = user.email
+                        .split("@")[0]
+                        .slice(0, 2)
+                        .toUpperCase()
+                    setInitials(emailInitials)
+                }
             }
         }
     }, [])
 
+
     const handleSignOut = async () => {
         try {
             const auth = getFirebaseAuth()
-            await signOut(auth)
+            if (auth) {
+                await signOut(auth)
+            }
             localStorage.removeItem("hospitalName")
             router.push("/")
         } catch (error) {
+
             console.error("Sign out error:", error)
         }
     }
@@ -102,7 +108,7 @@ export function UserAvatar() {
                     <span>Settings</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem 
+                <DropdownMenuItem
                     onClick={handleSignOut}
                     className="cursor-pointer py-2.5 px-3 rounded-lg text-red-600 dark:text-red-400 focus:text-red-600 focus:bg-red-50 dark:focus:bg-red-950/30"
                 >

@@ -29,7 +29,7 @@ export function DashboardSidebar() {
             // Generate initials from hospital name
             const nameInitials = storedName
                 .split(" ")
-                .map(word => word[0])
+                .map(_word => _word[0])
                 .join("")
                 .toUpperCase()
                 .slice(0, 2)
@@ -38,19 +38,22 @@ export function DashboardSidebar() {
 
         // Get user email from Firebase
         const auth = getFirebaseAuth()
-        const user = auth.currentUser
-        if (user?.email) {
-            setUserEmail(user.email)
-            // If no hospital name, use email initials
-            if (!storedName) {
-                const emailInitials = user.email
-                    .split("@")[0]
-                    .slice(0, 2)
-                    .toUpperCase()
-                setInitials(emailInitials)
+        if (auth) {
+            const user = auth.currentUser
+            if (user?.email) {
+                setUserEmail(user.email)
+                // If no hospital name, use email initials
+                if (!storedName) {
+                    const emailInitials = user.email
+                        .split("@")[0]
+                        .slice(0, 2)
+                        .toUpperCase()
+                    setInitials(emailInitials)
+                }
             }
         }
     }, [])
+
 
     return (
         <aside className="w-64 border-r border-border/40 bg-background hidden md:flex flex-col h-screen sticky top-0">

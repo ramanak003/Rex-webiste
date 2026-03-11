@@ -16,7 +16,7 @@ export interface Document {
   file_size: number
   uploaded_by: string
   uploaded_at: string
-  metadata?: Record<string, any>
+  metadata?: Record<string, unknown>
 }
 
 export interface DocumentChunk {
@@ -25,5 +25,5 @@ export interface DocumentChunk {
   chunk_text: string
   chunk_index: number
   embedding?: number[]
-  metadata?: Record<string, any>
+  metadata?: Record<string, unknown>
 }

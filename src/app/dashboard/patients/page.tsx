@@ -22,6 +22,9 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { AddPatientModal } from "@/components/dashboard/add-patient-modal"
+import { PatientProfileModal } from "@/components/dashboard/patient-profile-modal"
+import { useState } from "react"
 
 const patients = [
     { id: "MX-9281", name: "Sarah Connor", email: "sarah.c@example.com", age: 45, gender: "Female", lastVisit: "Oct 24, 2024", status: "Active", image: "/avatars/01.png" },
@@ -33,15 +36,19 @@ const patients = [
     { id: "MX-9287", name: "Robert Taylor", email: "robert.t@example.com", age: 72, gender: "Male", lastVisit: "Oct 12, 2024", status: "Critical", image: "/avatars/07.png" },
 ]
 
-
-import { AddPatientModal } from "@/components/dashboard/add-patient-modal"
-import { PatientProfileModal } from "@/components/dashboard/patient-profile-modal" // Import
-import { useState } from "react" // Import
-
-// ... imports
+interface Patient {
+    id: string
+    name: string
+    email: string
+    age: number
+    gender: string
+    lastVisit: string
+    status: string
+    image: string
+}
 
 export default function PatientsPage() {
-    const [selectedPatient, setSelectedPatient] = useState<any>(null)
+    const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null)
     const [patientProfileOpen, setPatientProfileOpen] = useState(false)
 
     return (
@@ -127,8 +134,8 @@ export default function PatientsPage() {
                             <TableHead>Patient</TableHead>
                             <TableHead className="hidden md:table-cell">Details</TableHead>
                             <TableHead className="hidden md:table-cell">Last Visit</TableHead>
-                            <TableHead>Status</TableHead>
-                            <TableHead className="w-[50px]"></TableHead>
+                            <TableHead className="text-right">Status</TableHead>
+                            <TableHead className="w-[50px] text-right"></TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -162,10 +169,10 @@ export default function PatientsPage() {
                                     </div>
                                 </TableCell>
                                 <TableCell className="hidden md:table-cell text-sm text-muted-foreground">{patient.lastVisit}</TableCell>
-                                <TableCell>
+                                <TableCell className="text-right">
                                     <Badge
                                         variant="outline"
-                                        className={`rounded-full px-2.5 py-0.5 text-xs font-medium border-0
+                                        className={`rounded-full px-2.5 py-0.5 text-xs font-medium border-0 inline-flex
                                             ${patient.status === 'Active' ? 'bg-green-500/10 text-green-700 dark:text-green-400' :
                                                 patient.status === 'Critical' ? 'bg-red-500/10 text-red-700 dark:text-red-400' :
                                                     'bg-zinc-500/10 text-zinc-700 dark:text-zinc-400'}`}
@@ -173,7 +180,7 @@ export default function PatientsPage() {
                                         {patient.status}
                                     </Badge>
                                 </TableCell>
-                                <TableCell onClick={(e) => e.stopPropagation()}>
+                                <TableCell className="text-right" onClick={(e) => e.stopPropagation()}>
                                     <DropdownMenu>
                                         <DropdownMenuTrigger asChild>
                                             <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-muted rounded-full">

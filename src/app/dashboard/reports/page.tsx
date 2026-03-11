@@ -5,7 +5,6 @@ import { StatsCard } from "@/components/dashboard/stats-card"
 import { FileText, Download, Eye, Filter, Search, UploadCloud, CheckCircle2, Clock, AlertTriangle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
 import {
     Table,
     TableBody,
@@ -46,7 +45,7 @@ export default function ReportsPage() {
 
     // Let's implement BOTH: Patient selector AND Upload Modal, as per previous "phantom" implementation.
 
-    const [selectedPatient, setSelectedPatient] = useState("")
+    const [selectedPatient] = useState("")
 
     // Filter reports based on selection
     const filteredReports = selectedPatient

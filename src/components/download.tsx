@@ -1,4 +1,5 @@
 
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { DownloadModal } from "@/components/download-modal"
 import { ArrowRight, Bell, Scan, Sparkles, Home, FileText, Pill, User } from "lucide-react"
@@ -58,10 +59,13 @@ export function Download() {
                                 <div className="flex items-center justify-between mb-3">
                                     <div className="flex items-center gap-2">
                                         <div className="h-9 w-9 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center overflow-hidden border-2 border-primary/20">
-                                            <img
-                                                src="avatar-cartoon.png"
+                                            <Image
+                                                src="/avatar-cartoon.png"
                                                 alt="User Avatar"
+                                                width={36}
+                                                height={36}
                                                 className="h-full w-full object-cover"
+                                                unoptimized
                                             />
                                         </div>
                                         <div>
@@ -72,7 +76,7 @@ export function Download() {
                                     <Bell className="h-5 w-5 text-zinc-900 dark:text-white" />
                                 </div>
                                 <h3 className="text-sm font-bold text-zinc-900 dark:text-white mb-0.5">Good Afternoon, fairoz</h3>
-                                <p className="text-[10px] text-zinc-500 dark:text-zinc-400">Here's your medication plan for today.</p>
+                                <p className="text-[10px] text-zinc-500 dark:text-zinc-400">Here&apos;s your medication plan for today.</p>
                             </div>
 
                             {/* Quick Actions */}

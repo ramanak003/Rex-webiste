@@ -14,11 +14,11 @@ async function extractTextFromDocument(file: File): Promise<string> {
 function chunkText(text: string, chunkSize: number = 500): string[] {
     const chunks: string[] = []
     const words = text.split(' ')
-    
+
     for (let i = 0; i < words.length; i += chunkSize) {
         chunks.push(words.slice(i, i + chunkSize).join(' '))
     }
-    
+
     return chunks
 }
 
@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
         const uint8Array = new Uint8Array(arrayBuffer)
 
         // Upload file to Supabase Storage
-        const { data: uploadData, error: uploadError } = await supabase.storage
+        const { error: uploadError } = await supabase.storage
             .from('patient-documents')
             .upload(filePath, uint8Array, {
                 contentType: file.type,
@@ -102,7 +102,7 @@ export async function POST(request: NextRequest) {
             await supabase.storage
                 .from('patient-documents')
                 .remove([filePath])
-            
+
             return NextResponse.json(
                 { error: 'Failed to create document record' },
                 { status: 500 }
@@ -142,7 +142,7 @@ export async function POST(request: NextRequest) {
             fileName: file.name,
             publicUrl: urlData.publicUrl,
         })
-    } catch (error) {
+    } catch (error: unknown) {
         console.error('Upload error:', error)
         return NextResponse.json(
             { error: 'Internal server error' },

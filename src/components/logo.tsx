@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -29,16 +30,22 @@ export function Logo({ className, href = "/", size = "md" }: LogoProps) {
   const content = (
     <>
       {/* Light mode: rexdark.png */}
-      <img
-        src="rexdark.png"
+      <Image
+        src="/rexdark.png"
         alt="Rex"
+        width={300}
+        height={100}
         className={cn(imageClass, "dark:hidden")}
+        unoptimized
       />
       {/* Dark mode: rexlight.png (smaller) */}
-      <img
-        src="rexlight.png"
+      <Image
+        src="/rexlight.png"
         alt="Rex"
+        width={300}
+        height={100}
         className={cn(darkImageClass, "hidden dark:block")}
+        unoptimized
       />
     </>
   );

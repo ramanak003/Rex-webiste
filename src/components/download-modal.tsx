@@ -1,4 +1,4 @@
-
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
@@ -36,8 +36,8 @@ export function DownloadModal({ children }: DownloadModalProps) {
                         <div className="absolute top-0 right-0 p-24 bg-primary/5 rounded-full blur-3xl translate-x-8 -translate-y-8 pointer-events-none"></div>
 
                         <div className="h-14 w-14 rounded-2xl flex items-center justify-center z-10 shadow-lg overflow-hidden flex-shrink-0">
-                            <img src="rexdark.png" alt="Rex" className="h-full w-auto max-w-full object-contain dark:hidden" />
-                            <img src="rexlight.png" alt="Rex" className="h-full w-auto max-w-full object-contain hidden dark:block" />
+                            <Image src="/rexdark.png" alt="Rex" width={100} height={40} className="h-full w-auto max-w-full object-contain dark:hidden" unoptimized />
+                            <Image src="/rexlight.png" alt="Rex" width={100} height={40} className="h-full w-auto max-w-full object-contain hidden dark:block" unoptimized />
                         </div>
 
                         <div className="space-y-3 z-10 text-left">
