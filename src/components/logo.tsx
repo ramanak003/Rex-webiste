@@ -27,8 +27,7 @@ export function Logo({ className, href = "/", size = "md" }: LogoProps) {
   const imageClass = cn(sizeClasses[size], "w-auto object-contain object-left", className);
   const darkImageClass = cn(darkModeSizeClasses[size], "w-auto object-contain object-left", className);
 
-  const isProd = process.env.NODE_ENV === 'production';
-  const logoPrefix = isProd ? "/Rex-website/" : "/";
+  const logoPrefix = "/";
 
   const content = (
     <>
